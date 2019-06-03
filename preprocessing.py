@@ -1,22 +1,27 @@
-from konlpy.tag import Hannanum
 from konlpy.tag import Okt
 
-#hannanum = Hannanum()
-#print(hannanum.analyze(u'롯데마트의 흑마늘 양념 치킨이 논란이 되고 있다.'))
+import os
 
-chat1 = "이게 맞지 모우라가 아약스전 잘했다고 선발은 빡쌔지 데스크로 전반 버티고 후반에 케인 빼면서 손,모우라 역습 조지는게 맞다 ^^"
-chat2 = "4-2-3-1이 가장 자신있는 포메이션 같다"
-chat3 = "존나 이게 현실이다 손뽕색들아ㅋㅋㅋㅋ"
+file_dir = "C:\\Users\\alber\\Desktop\\dev\\NLP_project\\input"
+path_list = [os.path.join(file_dir, file_name) for file_name in os.listdir(file_dir)]
 
-chat = []
-chat.append(chat1)
-chat.append(chat2)
-chat.append(chat3)
 
+text = []
+
+for i in path_list:
+    temp = []
+    with open(i, 'rt', encoding='UTF8') as f:
+        for line in f:
+            #print(line)
+            temp.append(line)
+        text.append(temp)
+
+print(text[0])
 twitter = Okt()
-
-for i in chat:
-    k = twitter.pos(i, norm=True, stem=False)
-    print(k)
-    print(k[0][0])
+chat = []
+for chatlog in text:
+    for chat in chatlog:
+        k = twitter.pos(chat, norm=True, stem=False)
+        print(k)
+    break
 
