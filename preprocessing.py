@@ -2,18 +2,31 @@ from konlpy.tag import Okt
 from collections import Counter
 import os
 
-
-#디렉토리는 각자 로컬에 맞춰서 바꿔서 사용!
-file_dir = "C:\\Users\\alber\\Desktop\\dev\\NLP_project\\input"
+file_dir = './input'
 path_list = [os.path.join(file_dir, file_name) for file_name in os.listdir(file_dir)]
 
+f = open('./stopwords-ko.txt', 'r')
 
 text = []
 twitter = Okt()
 chat = []
 tagged_list = []
 wordbox = []
+stopword = []
 
+# 해당 단어가 stopword 인지의 여부를 확인해주는 함수
+def check_stopword(word):
+    if word in stopword:
+        return False;
+    return True;
+
+# stopword 파일을 읽어 stopword list에 저장
+while True:
+    line = f.readline().rstrip('\n')
+    if not line:
+        break
+    stopword.append(line)
+f.close()
 
 for i in path_list:
     temp = []
@@ -42,9 +55,7 @@ for i in tagged_list:
 
     if len(Noun_KoreanParticle) > 0:
         for word in Noun_KoreanParticle:
-            #한글자인 단어는 버림
-            if len(word) > 1:
-                #print(word)
+            if check_stopword(word):
                 wordbox.append(word)
 
 print(Counter(wordbox))
