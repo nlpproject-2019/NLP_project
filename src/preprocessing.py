@@ -1,9 +1,8 @@
+#-*- coding:utf-8 -*-
+
 from konlpy.tag import Okt
 from collections import Counter
 import os
-
-file_dir = './input'
-path_list = [os.path.join(file_dir, file_name) for file_name in os.listdir(file_dir)]
 
 text = []
 twitter = Okt()
@@ -12,8 +11,8 @@ wordbox = []
 stopword = []
 
 # stopword 파일을 읽어 stopword list에 저장
-
 f = open('./stopwords-ko.txt', 'rt', encoding='UTF8')
+
 while True:
     line = f.readline().rstrip('\n')
     if not line:
@@ -22,7 +21,6 @@ while True:
 f.close()
 
 #댓글의 형태소 분석
-
 def PreprocessComment(Comment):
     Comment_word = []
     tokens = twitter.pos(Comment, norm=True, stem=False)
@@ -35,7 +33,6 @@ def PreprocessComment(Comment):
 
 
 #DataSet 의 전처리 과정
-
 def PreprocessFiles(file_dir):
     All_tagged_list = []
     path_list = [os.path.join(file_dir, file_name) for file_name in os.listdir(file_dir)]
@@ -49,8 +46,8 @@ def PreprocessFiles(file_dir):
                     #stopwords 거나 noun, koreanparticle 이 아니라면 제외!
                     if j[1] == "Noun" or j[1] == "KoreanParticle":
                         if j[0] not in stopword:
-                            print(j[0])
+                            #print(j[0])
                             temp.append(j[0])
-        All_tagged_list.append(temp)
-
+        All_tagged_list.append(Counter(temp))
+                               
     return All_tagged_list
