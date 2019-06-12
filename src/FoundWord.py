@@ -26,17 +26,24 @@ def word_decomposition(korean_word):
         else:
             r_lst.append([w])
     r_lst = sum(r_lst, [])
+    r_lst = [x for x in r_lst if x != ' ']
+    
     return r_lst
 
 def find_word_in_List(new_word, data_list):
     part_of_new_word = word_decomposition(new_word)
     before_distance = 0
+    print(part_of_new_word)
     
     for keyword in data_list:
         distance = 0
-        if len(new_word) - len(keyword) != 0 or len(keyword) == 1:
+        if len(new_word) - len(keyword) != 0:
             continue
-        part_of_keyword =word_decomposition(keyword)
+        
+        part_of_keyword = word_decomposition(keyword)
+        
+        if len(part_of_keyword) != len(part_of_new_word):
+            continue
         
         #새로운 단어의 모음 자음이 데이터셋에 있는 단어와 최대한 같은 단어를 찾아감
         for i, j in enumerate(part_of_new_word):
@@ -46,23 +53,13 @@ def find_word_in_List(new_word, data_list):
             else:
                 break
 
-#print(distance)
-#print(keyword)
-#print("++++")
-
-if distance > before_distance:
-    return_word = keyword
-        before_distance = distance
-    
+        if distance > before_distance:
+            return_word = keyword
+            before_distance = distance
+            
     if before_distance == 0:
         print("알맞는 단어가 존재하지 않습니다.")
-else:
-    return return_word
 
-
-
-
-#print(find_word_in_List("안녕하세요", ["안녕", "하세요", "만나서", "반갑습니다", "뭐하고", "뭐라고했냐?", "뭐라고씨불?", "뭐라고씨발!"]))
-
-
-#print(word_decomposition("ㅋㅋㅋㅋ"))
+    else:
+        print(return_word)
+        return return_word

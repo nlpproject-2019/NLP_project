@@ -51,4 +51,4 @@ def Ranking(AllScore):
         for idx in rankIdx:
             Rank[doc[idx]] = Score[idx]
         AllRank.append(Rank)
-return AllRank
+    return AllRank

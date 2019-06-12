@@ -34,21 +34,6 @@ def TF(word2index, wordbox, bool):
             for i in range(0, len(tf)):
                 tf[i] = tf[i] / tf_max
             TF.append(tf)
-    #TF = []
-#for token in wordbox:
-#    tf = []
-#    for i in range(0, len(word2index)):
-#        tf.append(0)
-
-#    for voca in token.keys():
-#        if voca in word2index.keys():
-#            tf[word2index[voca]] += token[voca]
-#        if voca not in word2index.keys():
-#            continue
-#    tf_max = max(tf)
-#    for i in range(0, len(tf)):
-#        tf[i] = tf[i] / tf_max
-#    TF.append(tf)
 
     elif bool == 'query':
         TF = []
@@ -57,16 +42,17 @@ def TF(word2index, wordbox, bool):
             for i in range(0, len(word2index)):
                 tf.append(0)
                 
-                for voca in token.keys():
-                    if voca in word2index.keys():
-                        tf[word2index[voca]] += token[voca]
-                    if voca not in word2index.keys():
-                        #continue
-                        fw = find_word_in_List(voca, list(word2index.keys()))
-                        tf[word2index[fw]] += token[fw]
-                tf_max = max(tf)
-                for i in range(0, len(tf)):
-                    tf[i] = tf[i] / tf_max
+            for voca in token.keys():
+                if voca in word2index.keys():
+                    tf[word2index[voca]] += token[voca]
+                if voca not in word2index.keys():
+                    #continue
+                    print(voca)
+                    fw = find_word_in_List(voca, list(word2index.keys()))
+                    tf[word2index[fw]] += token[fw]
+            tf_max = max(tf)
+            for i in range(0, len(tf)):
+                tf[i] = tf[i] / tf_max
             TF.append(tf)
     return TF
 '''
@@ -81,7 +67,7 @@ def IDF(TF):
         for tf in TF:
             if tf[i] != 0:
                 num+=1
-        idf = math.log10(len(TF) / num)
+        idf = math.log10(len(TF) / num) + 0.000000000000000000000000000000001
         IDF.append(idf)
     return IDF
 '''
