@@ -51,6 +51,8 @@ def TF(word2index, wordbox, bool):
                     fw = find_word_in_List(voca, list(word2index.keys()))
                     tf[word2index[fw]] += token[fw]
             tf_max = max(tf)
+            if tf_max == 0:
+                tf_max = 1
             for i in range(0, len(tf)):
                 tf[i] = tf[i] / tf_max
             TF.append(tf)

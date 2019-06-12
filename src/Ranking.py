@@ -14,6 +14,8 @@ def Normalize(Weight):
         sum = 0
         for element in weight:
             sum += math.pow(element, 2)
+        if sum == 0:
+            sum = 1
         for element in weight:
             unit_weight.append(element / math.sqrt(sum))
         unit_Weight.append(unit_weight)

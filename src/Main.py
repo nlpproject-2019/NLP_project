@@ -4,11 +4,6 @@ from preprocessing import *
 from Ranking import *
 from list import *
 
-# query variables
-query = []
-query_tf = []
-query_weight = []
-
 # docs rank variables
 score = []
 rank = []
@@ -26,33 +21,39 @@ idf_list = IDF(tf_list)
 weighting_list = Weighting(tf_list, idf_list)
 weighting_list = Normalize(weighting_list)
 
-#30대
-query_text1 = '''
-    위로드릴께요
-    '''
-query.append(PreprocessComment(query_text1))
-#30대
-query_text2 = '''
-    ㄴㄴ 그 여자 걍 대마초 피고 술취해서 집 잘못 찾은거아니냐 콘도살아 집살아??
-    '''
-query.append(PreprocessComment(query_text2))
-#10대
-query_text3 = '''
-    어느부분에서 심쿰해야하는걸까...흠...
-    '''
-query.append(PreprocessComment(query_text3))
+# variables
+f = open('../test_data/test_10.txt', 'rt', encoding='UTF8')
+count = 0
+result = 0
 
-query_tf = TF(indexing_list, query, 'query')
-query_weight = Weighting(query_tf, idf_list)
+while True:
+    # query variables
+    query = []
+    query_tf = []
+    query_weight = []
+    query_text1 = f.readline().rstrip('\n')
 
-for i in idf_list:
-    if i == 0:
-        print("0dklndsfnkls")
+    if not query_text1:
+        break
+    query.append(PreprocessComment(query_text1))
+    query_tf = TF(indexing_list, query, 'query')
+    query_weight = Weighting(query_tf, idf_list)
 
-query_weight = Normalize(query_weight)
-score = Scoring(weighting_list, query_weight)
-rank = Ranking(score)
-keyword = KeyWord(weighting_list, indexing_list)
 
-print(keyword)
-print(rank)
+    query_weight = Normalize(query_weight)
+    score = Scoring(weighting_list, query_weight)
+    rank = Ranking(score)
+    keyword = KeyWord(weighting_list, indexing_list)
+
+    count += 1
+    for r in rank:
+        if(str(list(r.keys())[0]) == '10대'):
+            result += 1
+
+    #print(keyword)
+    print(query_text1)
+    print(rank)
+
+print("전체 댓글 : %d " % count)
+print("결과 : %d " % result)
+print("정확도 : %f" % (result/count))

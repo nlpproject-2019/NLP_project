@@ -33,7 +33,6 @@ def word_decomposition(korean_word):
 def find_word_in_List(new_word, data_list):
     part_of_new_word = word_decomposition(new_word)
     before_distance = 0
-    print(part_of_new_word)
     
     for keyword in data_list:
         distance = 0
