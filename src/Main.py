@@ -49,7 +49,6 @@ query_text3 = '''
     '''
 query.append(PreprocessComment(query_text3))
 
-
 query_tf = TF(indexing_list, query, 'query')
 query_weight = Weighting(query_tf, idf_list)
 
