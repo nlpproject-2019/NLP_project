@@ -40,6 +40,7 @@ def PreprocessFiles(file_dir):
     All_tagged_list = []
     path_list = [os.path.join(file_dir, file_name) for file_name in os.listdir(file_dir)]
     for i in path_list:
+        print(i)
         temp = []
         with open(i, 'rt', encoding='UTF8') as file:
             for line in file:
@@ -49,8 +50,17 @@ def PreprocessFiles(file_dir):
                     #stopwords 거나 noun, koreanparticle 이 아니라면 제외!
                     if j[1] == "Noun" or j[1] == "KoreanParticle":
                         if j[0] not in stopword:
-                            print(j[0])
+                            #print(j[0])
                             temp.append(j[0])
         All_tagged_list.append(temp)
 
     return All_tagged_list
+
+
+data_list = (PreprocessFiles(file_dir))
+write_file = open("keyword.txt", 'w')
+for data in data_list:
+    c = Counter(data)
+    write_file.write(str(c))
+    del c
+write_file.close()
