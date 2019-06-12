@@ -28,7 +28,8 @@ def PreprocessComment(Comment):
     # Noun 과 KoreanParticle 만 골라서 담기
     for i in tokens:
         if i[1] == "Noun" or i[1] == "KoreanParticle":
-            Comment_word.append(i[0])
+            if i[i] not in stopword:
+                Comment_word.append(i[0])
     return Counter(Comment_word)
 
 
