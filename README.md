@@ -50,12 +50,12 @@ $ python3 Main.py
 - 프로세스 입출력
 ![](./assets/project.png)
 - 프로세스 과정
-1. Web Crawling
-2. Preprocessing
-3. Keyword Extracton
-4. Ranking
-5. Exception Handling
-6. Evaluation
+1. [Web Crawling](https://github.com/nlpproject-2019/NLP_project/blob/master/src/CommentCrawling.py)
+2. [Preprocessing](https://github.com/nlpproject-2019/NLP_project/blob/master/src/preprocessing.py)
+3. [Keyword Extracton](https://github.com/nlpproject-2019/NLP_project/blob/master/src/WordWeighting.py)
+4. [Ranking](https://github.com/nlpproject-2019/NLP_project/blob/master/src/Ranking.py)
+5. [Exception Handling](https://github.com/nlpproject-2019/NLP_project/blob/master/src/FoundWord.py)
+6. [Evaluation](https://github.com/nlpproject-2019/NLP_project/blob/master/src/Main.py)
 
 ## License
 - MIT License
