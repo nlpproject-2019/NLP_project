@@ -22,9 +22,14 @@ weighting_list = Weighting(tf_list, idf_list)
 weighting_list = Normalize(weighting_list)
 
 # variables
-f = open('../test_data/test_10.txt', 'rt', encoding='UTF8')
+f = open('../test_data/test_50.txt', 'rt', encoding='UTF8')
 count = 0
 result = 0
+
+keyword = KeyWord(weighting_list, indexing_list)
+
+for ageKeyword in keyword:
+    print(ageKeyword)
 
 while True:
     # query variables
@@ -32,7 +37,7 @@ while True:
     query_tf = []
     query_weight = []
     query_text1 = f.readline().rstrip('\n')
-
+    print(query_text1)
     if not query_text1:
         break
     query.append(PreprocessComment(query_text1))
@@ -43,16 +48,16 @@ while True:
     query_weight = Normalize(query_weight)
     score = Scoring(weighting_list, query_weight)
     rank = Ranking(score)
-    keyword = KeyWord(weighting_list, indexing_list)
-
+    print(rank)
+    print("")
+    
     count += 1
     for r in rank:
         if(str(list(r.keys())[0]) == '10대'):
             result += 1
-
-    #print(keyword)
-    print(query_text1)
-    print(rank)
+    
+    
+    
 
 print("전체 댓글 : %d " % count)
 print("결과 : %d " % result)
