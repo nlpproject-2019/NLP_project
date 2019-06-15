@@ -60,5 +60,4 @@ def find_word_in_List(new_word, data_list):
         print("알맞는 단어가 존재하지 않습니다.")
 
     else:
-        print(return_word)
         return return_word
