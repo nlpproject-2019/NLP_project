@@ -23,12 +23,16 @@
 ## Requirement
 
 - Requirement 설치
-`git clone https://github.com/nlpproject-2019/NLP_project`
-`cd NLP_project`
-`pip install -r requirement.txt`
+```bash
+$ git clone https://github.com/nlpproject-2019/NLP_project
+$ cd NLP_project
+$ pip install -r requirement.txt
+```
 - 실행 명령어
-`cd NLP_project/src`
-`python3 Main.py`
+```bash
+$ cd NLP_project/src
+$ python3 Main.py
+```
 
 ## 진행 과정
 
