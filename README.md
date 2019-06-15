@@ -18,16 +18,29 @@
 
 - Web Crawling
 - Keyword Extraction
-
 - Natural Language Processing
+
+## Requirement
+
+- Requirement 설치
+`git clone https://github.com/nlpproject-2019/NLP_project`
+`cd NLP_project`
+`pip install -r requirement.txt`
+- 실행 명령어
+`cd NLP_project/src`
+`python3 Main.py`
 
 ## 진행 과정
 
-- 깃 브랜치 사진 올릴것 !!
-
-
+- Master, test Branch
+![](./assets/master-test.png)
+- Crawling Branch
+![](./assets/crawling.png)
+- Preprocessing Branch
+![](./assets/preprocessing.png)
+- Weighting Branch
+![](./assets/weighting.png)
 
 ## DETAIL
 
 ![](./assets/project.png)
-
