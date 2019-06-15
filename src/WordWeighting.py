@@ -47,8 +47,8 @@ def TF(word2index, wordbox, bool):
                     tf[word2index[voca]] += token[voca]
                 if voca not in word2index.keys():
                     #continue
-                    print(voca)
                     fw = find_word_in_List(voca, list(word2index.keys()))
+                    print("%s -> %s" % (voca, fw))
                     tf[word2index[fw]] += token[fw]
             tf_max = max(tf)
             if tf_max == 0:
