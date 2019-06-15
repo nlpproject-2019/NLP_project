@@ -47,7 +47,15 @@ $ python3 Main.py
 
 ## DETAIL
 
+- 프로세스 입출력
 ![](./assets/project.png)
+- 프로세스 과정
+1. Web Crawling
+2. Preprocessing
+3. Keyword Extracton
+4. Ranking
+5. Exception Handling
+6. Evaluation
 
 ## License
 - MIT License
